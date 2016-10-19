@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "CustomSessionUrlProtocol.h"
+#import "CustomUrlProtocol.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +21,7 @@
     // Override point for customization after application launch.
     
     // 注册NSURLProtocol
-    [NSURLProtocol registerClass:[CustomSessionUrlProtocol class]];
+    [NSURLProtocol registerClass:[CustomUrlProtocol class]];
     
     return YES;
 }
@@ -55,7 +55,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
     // 解注册
-    [NSURLProtocol unregisterClass:[CustomSessionUrlProtocol class]];
+    [NSURLProtocol unregisterClass:[CustomUrlProtocol class]];
     
 }
 

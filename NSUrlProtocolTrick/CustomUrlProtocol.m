@@ -6,17 +6,18 @@
 //  Copyright © 2016年 tashaxing. All rights reserved.
 //
 
-#import "CustomSessionUrlProtocol.h"
+#import "CustomUrlProtocol.h"
 
 #define kProtocolKey @"SessionProtocolKey"
 
-@interface CustomSessionUrlProtocol ()<NSURLSessionDelegate>
+@interface CustomUrlProtocol ()<NSURLSessionDelegate>
 {
+    NSURLConnection *_connection;
     NSURLSession *_session;
 }
 @end
 
-@implementation CustomSessionUrlProtocol
+@implementation CustomUrlProtocol
 
 #pragma mark - Protocol相关方法
 
@@ -59,6 +60,7 @@
 {
     // 表示该请求已经被处理，防止无限循环
     [NSURLProtocol setProperty:@(YES) forKey:kProtocolKey inRequest:(NSMutableURLRequest *)self.request];
+
     
     // 普通方式,可以读取本地文件，图片路径，json等
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"json"];
@@ -75,7 +77,10 @@
     [self.client URLProtocolDidFinishLoading:self];
     
     
-    // 代理方式
+    // connection代理方式
+//    _connection = [NSURLConnection connectionWithRequest:self.request delegate:self];
+    
+    // session代理方式
 //    NSURLSessionConfiguration * config = [NSURLSessionConfiguration defaultSessionConfiguration];
 //    _session = [NSURLSession sessionWithConfiguration:config
 //                                             delegate:self
@@ -85,12 +90,17 @@
 //    
 //    
 //    [dataTask resume];
+    
+    
 }
 
 - (void)stopLoading
 {
-    [_session invalidateAndCancel];
-    _session = nil;
+    [_connection cancel];
+    _connection = nil;
+    
+//    [_session invalidateAndCancel];
+//    _session = nil;
 }
 
 #pragma mark - 自定义方法
@@ -109,8 +119,30 @@
     return srcRequest;
 }
 
-#pragma mark - NSURLSessionDataDelegate，如果原来的请求是用代理形式做的，在这里处理
+#pragma mark - NSUrLConnectionDataDelgate
+// connection的走这里
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
+}
 
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.client URLProtocol:self didLoadData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    [self.client URLProtocolDidFinishLoading:self];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    [self.client URLProtocol:self didFailWithError:error];
+}
+
+#pragma mark - NSURLSessionDataDelegate，如果原来的请求是用代理形式做的，在这里处理
+// session的走这里
 -(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
     if (error)
@@ -122,7 +154,6 @@
     }
 }
 
-// 代理方法受到应答走这里
 -(void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler
 {
     [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];

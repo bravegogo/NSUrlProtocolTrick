@@ -11,6 +11,6 @@
 #import <Foundation/Foundation.h>
 
 
-@interface CustomSessionUrlProtocol : NSURLProtocol
+@interface CustomUrlProtocol : NSURLProtocol
 
 @end

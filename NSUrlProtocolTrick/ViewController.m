@@ -27,29 +27,54 @@
 // 点击请求数据
 - (IBAction)loadJsonClicked:(id)sender
 {
-    NSString *httpUrl = @"http://www.qq.com";
+    // session api
+//    NSString *httpUrl = @"http://www.qq.com";
+//    
+//    NSURLSession *session = [NSURLSession sharedSession];
+//    NSURL *url = [NSURL URLWithString:httpUrl];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+//
+//    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        if(!error)
+//        {
+//            NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//            NSLog(@"%@", str);
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                self.jsonTextView.text = str;
+//            });
+//        }
+//        else
+//        {
+//            NSLog(@"%@", error.localizedDescription);
+//        
+//        }
+//    }];
+//    
+//    [dataTask resume];
     
-    NSURLSession *session = [NSURLSession sharedSession];
+    // connection api
+    NSString *httpUrl = @"http://www.qq.com";
     NSURL *url = [NSURL URLWithString:httpUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if(!error)
-        {
-            NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"%@", str);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.jsonTextView.text = str;
-            });
-        }
-        else
-        {
-            NSLog(@"%@", error.localizedDescription);
-        
-        }
-    }];
+    request.HTTPMethod = @"GET";
     
-    [dataTask resume];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+                               if(connectionError)
+                                   NSLog(@"Httperror: %@%ld", connectionError.localizedDescription, connectionError.code);
+                               else
+                               {
+                                   
+                                   NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                   NSLog(@"%@", str);
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       self.jsonTextView.text = str;
+                                   });
+                                   
+                                   
+                               }
+                           }];
 }
 
 // 点击加载网页

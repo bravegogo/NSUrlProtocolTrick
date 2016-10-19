@@ -14,7 +14,7 @@
 		E41D24AE1DB703BE005DD404 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41D24AC1DB703BE005DD404 /* Main.storyboard */; };
 		E41D24B01DB703BE005DD404 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E41D24AF1DB703BE005DD404 /* Assets.xcassets */; };
 		E41D24B31DB703BE005DD404 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41D24B11DB703BE005DD404 /* LaunchScreen.storyboard */; };
-		E41D24BC1DB73E1A005DD404 /* CustomSessionUrlProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E41D24BB1DB73E1A005DD404 /* CustomSessionUrlProtocol.m */; };
+		E41D24BC1DB73E1A005DD404 /* CustomUrlProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E41D24BB1DB73E1A005DD404 /* CustomUrlProtocol.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,8 +29,8 @@
 		E41D24AF1DB703BE005DD404 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E41D24B21DB703BE005DD404 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E41D24B41DB703BE005DD404 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E41D24BA1DB73E1A005DD404 /* CustomSessionUrlProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSessionUrlProtocol.h; sourceTree = "<group>"; };
-		E41D24BB1DB73E1A005DD404 /* CustomSessionUrlProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSessionUrlProtocol.m; sourceTree = "<group>"; };
+		E41D24BA1DB73E1A005DD404 /* CustomUrlProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUrlProtocol.h; sourceTree = "<group>"; };
+		E41D24BB1DB73E1A005DD404 /* CustomUrlProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUrlProtocol.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +72,8 @@
 				E41D24B11DB703BE005DD404 /* LaunchScreen.storyboard */,
 				E41D24B41DB703BE005DD404 /* Info.plist */,
 				E41D24A31DB703BE005DD404 /* Supporting Files */,
-				E41D24BA1DB73E1A005DD404 /* CustomSessionUrlProtocol.h */,
-				E41D24BB1DB73E1A005DD404 /* CustomSessionUrlProtocol.m */,
+				E41D24BA1DB73E1A005DD404 /* CustomUrlProtocol.h */,
+				E41D24BB1DB73E1A005DD404 /* CustomUrlProtocol.m */,
 				E418245D1DB7635B00467AA3 /* test.json */,
 			);
 			path = NSUrlProtocolTrick;
@@ -161,7 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E41D24AB1DB703BE005DD404 /* ViewController.m in Sources */,
-				E41D24BC1DB73E1A005DD404 /* CustomSessionUrlProtocol.m in Sources */,
+				E41D24BC1DB73E1A005DD404 /* CustomUrlProtocol.m in Sources */,
 				E41D24A81DB703BE005DD404 /* AppDelegate.m in Sources */,
 				E41D24A51DB703BE005DD404 /* main.m in Sources */,
 			);
