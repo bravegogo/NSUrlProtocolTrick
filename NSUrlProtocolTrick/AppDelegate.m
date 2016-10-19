@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "CustomSessionUrlProtocol.h"
 
 @interface AppDelegate ()
 
@@ -18,8 +19,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    // 注册NSURLProtocol
     
+    // 注册NSURLProtocol
+    [NSURLProtocol registerClass:[CustomSessionUrlProtocol class]];
     
     return YES;
 }
@@ -48,8 +50,13 @@
 }
 
 
-- (void)applicationWillTerminate:(UIApplication *)application {
+- (void)applicationWillTerminate:(UIApplication *)application
+{
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
+    // 解注册
+    [NSURLProtocol unregisterClass:[CustomSessionUrlProtocol class]];
+    
 }
 
 
