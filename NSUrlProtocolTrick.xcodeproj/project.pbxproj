@@ -118,7 +118,7 @@
 				TargetAttributes = {
 					E41D249F1DB703BE005DD404 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = UXF65D8DXR;
+						DevelopmentTeam = P3V7X37F97;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -283,7 +283,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = UXF65D8DXR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = P3V7X37F97;
 				INFOPLIST_FILE = NSUrlProtocolTrick/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -296,7 +297,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = UXF65D8DXR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = P3V7X37F97;
 				INFOPLIST_FILE = NSUrlProtocolTrick/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
